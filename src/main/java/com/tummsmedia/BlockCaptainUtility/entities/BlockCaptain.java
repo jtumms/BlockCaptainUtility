@@ -13,22 +13,14 @@ public class BlockCaptain {
 
     @Id
     @GeneratedValue
-    int userId;
+    int id;
 
     @Column(nullable = false)
-    String username;
+    String email;
     @Column(nullable = false)
     String password;
     @Column(nullable = false)
-    int houseNumber;
-    @Column(nullable = false)
-    String street;
-    @Column(nullable = false)
-    String city;
-    @Column(nullable = false)
-    String state;
-    @Column(nullable = false)
-    int zipcode;
+    String address;
     @Column(nullable = true)
     String cellPhone;
     @Column(nullable =  true)
@@ -41,41 +33,57 @@ public class BlockCaptain {
     String neighborhood;
     @Column(nullable = true)
     String addtionalInfo;
+    @Column
+    boolean cert;
+    @Column
+    boolean certInterested;
+    @Column
+    boolean medical;
+    @Column
+    boolean firstResponder;
+    @Column
+    boolean ham;
+    @Column
+    boolean chainsaw;
+    @Column
+    boolean generator;
 
     public BlockCaptain() {
     }
 
-    public BlockCaptain(int userId, String username, String password, int houseNumber, String street, String city, String state, int zipcode, String cellPhone, String altPhone, String firstName, String lastName, String neighborhood, String addtionalInfo) {
-        this.userId = userId;
-        this.username = username;
+    public BlockCaptain(String email, String password, String address, String cellPhone, String altPhone, String firstName, String lastName, String neighborhood, String addtionalInfo, boolean cert, boolean certInterested, boolean medical, boolean firstResponder, boolean ham, boolean chainsaw, boolean generator) {
+        this.email = email;
         this.password = password;
-        this.houseNumber = houseNumber;
-        this.street = street;
-        this.city = city;
-        this.state = state;
-        this.zipcode = zipcode;
+        this.address = address;
         this.cellPhone = cellPhone;
         this.altPhone = altPhone;
         this.firstName = firstName;
         this.lastName = lastName;
         this.neighborhood = neighborhood;
         this.addtionalInfo = addtionalInfo;
+        this.cert = cert;
+        this.certInterested = certInterested;
+        this.medical = medical;
+        this.firstResponder = firstResponder;
+        this.ham = ham;
+        this.chainsaw = chainsaw;
+        this.generator = generator;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getId() {
+        return id;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -86,44 +94,12 @@ public class BlockCaptain {
         this.password = password;
     }
 
-    public int getHouseNumber() {
-        return houseNumber;
+    public String getAddress() {
+        return address;
     }
 
-    public void setHouseNumber(int houseNumber) {
-        this.houseNumber = houseNumber;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public int getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(int zipcode) {
-        this.zipcode = zipcode;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getCellPhone() {
@@ -172,5 +148,61 @@ public class BlockCaptain {
 
     public void setAddtionalInfo(String addtionalInfo) {
         this.addtionalInfo = addtionalInfo;
+    }
+
+    public boolean isCert() {
+        return cert;
+    }
+
+    public void setCert(boolean cert) {
+        this.cert = cert;
+    }
+
+    public boolean isCertInterested() {
+        return certInterested;
+    }
+
+    public void setCertInterested(boolean certInterested) {
+        this.certInterested = certInterested;
+    }
+
+    public boolean isMedical() {
+        return medical;
+    }
+
+    public void setMedical(boolean medical) {
+        this.medical = medical;
+    }
+
+    public boolean isFirstResponder() {
+        return firstResponder;
+    }
+
+    public void setFirstResponder(boolean firstResponder) {
+        this.firstResponder = firstResponder;
+    }
+
+    public boolean isHam() {
+        return ham;
+    }
+
+    public void setHam(boolean ham) {
+        this.ham = ham;
+    }
+
+    public boolean isChainsaw() {
+        return chainsaw;
+    }
+
+    public void setChainsaw(boolean chainsaw) {
+        this.chainsaw = chainsaw;
+    }
+
+    public boolean isGenerator() {
+        return generator;
+    }
+
+    public void setGenerator(boolean generator) {
+        this.generator = generator;
     }
 }
