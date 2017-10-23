@@ -38,14 +38,39 @@ public class BlockCaptainController {
     }
 
     @RequestMapping(value = "/get-user/{id}", method = RequestMethod.GET)
-    public Object getBc(@PathVariable("id")int id) {
-        if (blockCaptains.findFirstById(id) == null){
-            HashMap<String,String > hm = new HashMap();
-            hm.put("result","no results found");
+    public ResponseEntity<Object> getBc(@PathVariable("id")int id) {
+        if (blockCaptains.findFirstById(id) == null) {
+            HashMap<String, String> hm = new HashMap();
+            hm.put("result", "no results found");
             return new ResponseEntity<Object>(hm, HttpStatus.OK);
         }
-        return blockCaptains.findFirstById(id);
+        BlockCaptain bc = blockCaptains.findFirstById(id);
+        bc.setAssignedResidenceCount(bc.getAssignedResidences().size());
+        BlockCaptain extendedBc = new BlockCaptain(bc.getId(),
+                bc.getEmail(),
+                bc.getPassword(),
+                bc.getAddress(),
+                bc.getCellPhone(),
+                bc.getAltPhone(),
+                bc.getFirstName(),
+                bc.getLastName(),
+                bc.getNeighborhood(),
+                bc.getAddtionalInfo(),
+                bc.isCert(),
+                bc.isCertInterest(),
+                bc.isMedical(),
+                bc.isFirstResponder(),
+                bc.isHam(),
+                bc.isChainsaw(),
+                bc.isGenerator(),
+                bc.getAssignedResidences(),
+                bc.getAssignedResidenceCount());
+        return new ResponseEntity<Object>(extendedBc, HttpStatus.OK);
+
+
+
     }
+
     @RequestMapping(path = "/bc.json", method = RequestMethod.GET)
     public Iterable<BlockCaptain> getBlockCaptains() {
         return blockCaptains.findAll();

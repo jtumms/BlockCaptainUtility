@@ -2,6 +2,7 @@ package com.tummsmedia.BlockCaptainUtility.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.tummsmedia.BlockCaptainUtility.services.BlockCaptainRepo;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -53,9 +54,12 @@ public class BlockCaptain {
     @Column
     boolean generator;
 
-    @ElementCollection
-    @CollectionTable(name = "residences", joinColumns = @JoinColumn(name = "id"))
+    @OneToMany
+    @JoinColumn(name = "bc_id")
     private List<Residence> assignedResidences = new ArrayList<>();
+    @Transient
+    int assignedResidenceCount;
+
 
     public BlockCaptain() {
     }
@@ -66,7 +70,7 @@ public class BlockCaptain {
         this.password = password;
     }
 
-    public BlockCaptain(int id, String email, String password, String address, String cellPhone, String altPhone, String firstName, String lastName, String neighborhood, String addtionalInfo, boolean cert, boolean certInterest, boolean medical, boolean firstResponder, boolean ham, boolean chainsaw, boolean generator) {
+    public BlockCaptain(int id, String email, String password, String address, String cellPhone, String altPhone, String firstName, String lastName, String neighborhood, String addtionalInfo, boolean cert, boolean certInterest, boolean medical, boolean firstResponder, boolean ham, boolean chainsaw, boolean generator, List<Residence> assignedResidences, int assignedResidenceCount) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -84,26 +88,11 @@ public class BlockCaptain {
         this.ham = ham;
         this.chainsaw = chainsaw;
         this.generator = generator;
+        this.assignedResidences = assignedResidences;
+        this.assignedResidenceCount = assignedResidenceCount;
     }
 
-    public BlockCaptain(String email, String password, String address, String cellPhone, String altPhone, String firstName, String lastName, String neighborhood, String addtionalInfo, boolean cert, boolean certInterest, boolean medical, boolean firstResponder, boolean ham, boolean chainsaw, boolean generator) {
-        this.email = email;
-        this.password = password;
-        this.address = address;
-        this.cellPhone = cellPhone;
-        this.altPhone = altPhone;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.neighborhood = neighborhood;
-        this.addtionalInfo = addtionalInfo;
-        this.cert = cert;
-        this.certInterest = certInterest;
-        this.medical = medical;
-        this.firstResponder = firstResponder;
-        this.ham = ham;
-        this.chainsaw = chainsaw;
-        this.generator = generator;
-    }
+
 
     public int getId() {
         return id;
@@ -239,5 +228,23 @@ public class BlockCaptain {
 
     public void setGenerator(boolean generator) {
         this.generator = generator;
+    }
+
+    public List<Residence> getAssignedResidences() {
+        return assignedResidences;
+    }
+
+    public int getAssignedResidenceCount() {
+        return assignedResidenceCount;
+    }
+
+    public void setAssignedResidences(List<Residence> assignedResidences) {
+        this.assignedResidences = assignedResidences;
+    }
+
+    public void setAssignedResidenceCount(int size) {
+        assignedResidenceCount = assignedResidences.size();
+
+
     }
 }
