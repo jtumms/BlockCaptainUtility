@@ -1,7 +1,11 @@
 package com.tummsmedia.BlockCaptainUtility.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by john.tumminelli on 9/26/17.
@@ -15,19 +19,20 @@ public class BlockCaptain {
     @GeneratedValue
     int id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     String email;
-    @Column(nullable = false)
+    @Column(nullable = true)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     String password;
-    @Column(nullable = false)
+    @Column(nullable = true)
     String address;
     @Column(nullable = true)
     String cellPhone;
     @Column(nullable =  true)
     String altPhone;
-    @Column(nullable = false)
+    @Column(nullable = true)
     String firstName;
-    @Column(nullable = false)
+    @Column(nullable = true)
     String lastName;
     @Column(nullable = true)
     String neighborhood;
@@ -36,7 +41,7 @@ public class BlockCaptain {
     @Column
     boolean cert;
     @Column
-    boolean certInterested;
+    boolean certInterest;
     @Column
     boolean medical;
     @Column
@@ -48,10 +53,21 @@ public class BlockCaptain {
     @Column
     boolean generator;
 
+    @ElementCollection
+    @CollectionTable(name = "residences", joinColumns = @JoinColumn(name = "id"))
+    private List<Residence> assignedResidences = new ArrayList<>();
+
     public BlockCaptain() {
     }
 
-    public BlockCaptain(String email, String password, String address, String cellPhone, String altPhone, String firstName, String lastName, String neighborhood, String addtionalInfo, boolean cert, boolean certInterested, boolean medical, boolean firstResponder, boolean ham, boolean chainsaw, boolean generator) {
+
+    public BlockCaptain(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
+    public BlockCaptain(int id, String email, String password, String address, String cellPhone, String altPhone, String firstName, String lastName, String neighborhood, String addtionalInfo, boolean cert, boolean certInterest, boolean medical, boolean firstResponder, boolean ham, boolean chainsaw, boolean generator) {
+        this.id = id;
         this.email = email;
         this.password = password;
         this.address = address;
@@ -62,7 +78,26 @@ public class BlockCaptain {
         this.neighborhood = neighborhood;
         this.addtionalInfo = addtionalInfo;
         this.cert = cert;
-        this.certInterested = certInterested;
+        this.certInterest = certInterest;
+        this.medical = medical;
+        this.firstResponder = firstResponder;
+        this.ham = ham;
+        this.chainsaw = chainsaw;
+        this.generator = generator;
+    }
+
+    public BlockCaptain(String email, String password, String address, String cellPhone, String altPhone, String firstName, String lastName, String neighborhood, String addtionalInfo, boolean cert, boolean certInterest, boolean medical, boolean firstResponder, boolean ham, boolean chainsaw, boolean generator) {
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.cellPhone = cellPhone;
+        this.altPhone = altPhone;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.neighborhood = neighborhood;
+        this.addtionalInfo = addtionalInfo;
+        this.cert = cert;
+        this.certInterest = certInterest;
         this.medical = medical;
         this.firstResponder = firstResponder;
         this.ham = ham;
@@ -158,12 +193,12 @@ public class BlockCaptain {
         this.cert = cert;
     }
 
-    public boolean isCertInterested() {
-        return certInterested;
+    public boolean isCertInterest() {
+        return certInterest;
     }
 
-    public void setCertInterested(boolean certInterested) {
-        this.certInterested = certInterested;
+    public void setCertInterest(boolean certInterest) {
+        this.certInterest = certInterest;
     }
 
     public boolean isMedical() {

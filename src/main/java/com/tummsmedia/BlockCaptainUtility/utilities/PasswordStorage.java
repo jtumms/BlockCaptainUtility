@@ -1,4 +1,4 @@
-package com.tummsmedia.utilities;
+package com.tummsmedia.BlockCaptainUtility.utilities;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
