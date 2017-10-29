@@ -59,6 +59,9 @@ public class BlockCaptain {
     private List<Residence> assignedResidences = new ArrayList<>();
     @Transient
     int assignedResidenceCount;
+    @Column(nullable = false)
+    boolean
+
 
 
     public BlockCaptain() {
