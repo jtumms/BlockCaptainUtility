@@ -8,5 +8,6 @@ public class BlockCaptainUtilityApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BlockCaptainUtilityApplication.class, args);
+
 	}
 }

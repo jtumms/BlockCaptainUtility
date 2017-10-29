@@ -1,5 +1,6 @@
 package com.tummsmedia.BlockCaptainUtility.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
@@ -7,6 +8,8 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 public class Street {
+
+
     private String streetName;
 
     public Street() {

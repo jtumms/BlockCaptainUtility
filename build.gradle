@@ -32,4 +32,10 @@ dependencies {
 	runtime('org.postgresql:postgresql')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	compile('org.hibernate:hibernate-java8:5.0.9.Final')
+	compile ('com.vladmihalcea:hibernate-types-5:1.0.0')
+	compile ('com.google.code.gson:gson:2.8.2')
+	compile ('org.postgresql:postgresql:42.1.4.jre7')
+
 }
+
+

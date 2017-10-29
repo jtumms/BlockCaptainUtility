@@ -37,7 +37,7 @@ public class BlockCaptainController {
 
     }
 
-    @RequestMapping(value = "/get-user/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/get-bc-by-id/{id}", method = RequestMethod.GET)
     public ResponseEntity<Object> getBc(@PathVariable("id")int id) {
         if (blockCaptains.findFirstById(id) == null) {
             HashMap<String, String> hm = new HashMap();
@@ -75,6 +75,12 @@ public class BlockCaptainController {
     public Iterable<BlockCaptain> getBlockCaptains() {
         return blockCaptains.findAll();
     }
+
+//    @RequestMapping(path = "/get-bc", method = RequestMethod.GET)
+//    public Iterable<BlockCaptain> bcListByNeighborhood (@RequestParam (value = "neighborhood", defaultValue = "all"){
+//
+//    }
+
 
 }
 

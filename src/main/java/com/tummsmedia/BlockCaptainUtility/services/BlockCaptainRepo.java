@@ -10,6 +10,4 @@ public interface BlockCaptainRepo extends CrudRepository<BlockCaptain, Integer> 
     BlockCaptain findFirstById(int id);
     BlockCaptain findFirstByEmail(String email);
 
-
-
 }
