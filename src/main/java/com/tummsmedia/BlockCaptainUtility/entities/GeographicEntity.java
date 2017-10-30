@@ -45,10 +45,16 @@ public class GeographicEntity{
     public GeographicEntity() {
     }
 
-    public GeographicEntity(int geoId, String entity, int[] path, Gson relatedDataObject) {
+    public GeographicEntity(int geoId, String entity, int[] path, BlockCaptain assignedBc) {
         this.geoId = geoId;
         this.entity = entity;
         this.path = path;
+        this.assignedBc = assignedBc;
+    }
+
+    public GeographicEntity(String entity, BlockCaptain assignedBc) {
+        this.entity = entity;
+        this.assignedBc = assignedBc;
     }
 
     public int getGeoId() {
@@ -75,7 +81,12 @@ public class GeographicEntity{
         this.path = path;
     }
 
-    public void setRelatedDataObjects(Gson relatedDataObject) {
+    public BlockCaptain getAssignedBc() {
+        return assignedBc;
+    }
+
+    public void setAssignedBc(BlockCaptain assignedBc) {
+        this.assignedBc = assignedBc;
     }
 }
 

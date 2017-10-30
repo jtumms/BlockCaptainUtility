@@ -59,13 +59,21 @@ public class BlockCaptain {
     private List<Residence> assignedResidences = new ArrayList<>();
     @Transient
     int assignedResidenceCount;
-    @Column(nullable = false)
-    boolean
 
+    public enum UserLevel{
+        ADMIN,
+        TEAM_LEADER,
+        BLOCK_CAPTAIN,
+        VIEW_ONLY
+    }
+
+    @Column
+    private  UserLevel userLevel;
 
 
     public BlockCaptain() {
     }
+
 
 
     public BlockCaptain(String email, String password) {
@@ -73,7 +81,7 @@ public class BlockCaptain {
         this.password = password;
     }
 
-    public BlockCaptain(int id, String email, String password, String address, String cellPhone, String altPhone, String firstName, String lastName, String neighborhood, String addtionalInfo, boolean cert, boolean certInterest, boolean medical, boolean firstResponder, boolean ham, boolean chainsaw, boolean generator, List<Residence> assignedResidences, int assignedResidenceCount) {
+    public BlockCaptain(int id, String email, String password, String address, String cellPhone, String altPhone, String firstName, String lastName, String neighborhood, String addtionalInfo, boolean cert, boolean certInterest, boolean medical, boolean firstResponder, boolean ham, boolean chainsaw, boolean generator, List<Residence> assignedResidences, int assignedResidenceCount, UserLevel userLevel) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -93,6 +101,7 @@ public class BlockCaptain {
         this.generator = generator;
         this.assignedResidences = assignedResidences;
         this.assignedResidenceCount = assignedResidenceCount;
+        this.userLevel = userLevel;
     }
 
 
@@ -249,5 +258,13 @@ public class BlockCaptain {
         assignedResidenceCount = assignedResidences.size();
 
 
+    }
+
+    public UserLevel getUserLevel() {
+        return userLevel;
+    }
+
+    public void setUserLevel(UserLevel userLevel) {
+        this.userLevel = userLevel;
     }
 }

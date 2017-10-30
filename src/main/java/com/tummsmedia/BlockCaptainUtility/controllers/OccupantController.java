@@ -22,12 +22,14 @@ public class OccupantController {
     @Autowired
     OccupantRepo occupants;
 
-    @RequestMapping(path = "/occupants", method = RequestMethod.GET)
+    @RequestMapping(path = "/occupant", method = RequestMethod.GET)
     public Occupant getOccupant(@RequestParam("id")int id){
+
         Occupant occupant = occupants.findFirstByOccupantId(id);
         return occupant;
-
     }
-
-
+    @RequestMapping(path = "/occupants", method = RequestMethod.GET)
+    public Iterable<Occupant> getOccupantByName(@RequestParam("name")String name) {
+        return occupants.findByOccupantLastName(name);
+    }
 }

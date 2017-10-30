@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 /**
  * Created by john.tumminelli on 10/23/17.
  */
-public interface ResidenceRepo extends CrudRepository<Residence,Integer> {
-
+public interface ResidenceRepo extends CrudRepository<Residence,String> {
+    Residence findFirstByAddress(String address);
 
 }
