@@ -22,6 +22,8 @@ public class Residence {
     @OneToMany
     @JoinColumn(name = "addressId")
     private List<Occupant> associatedOccupants = new ArrayList<>();
+    @Column(name = "bc_id", updatable = false)
+    private int assignedBlockCaptId;
 
 
 
@@ -29,12 +31,13 @@ public class Residence {
     public Residence() {
     }
 
-    public Residence(int id, int houseNumber, String street, String address, List<Occupant> associatedOccupants) {
+    public Residence(int id, int houseNumber, String street, String address, List<Occupant> associatedOccupants, int assignedBlockCaptId) {
         this.id = id;
         this.houseNumber = houseNumber;
         this.street = street;
         this.address = address;
         this.associatedOccupants = associatedOccupants;
+        this.assignedBlockCaptId = assignedBlockCaptId;
     }
 
     public int getId() {
@@ -75,5 +78,13 @@ public class Residence {
 
     public void setAssociatedOccupants(List<Occupant> associatedOccupants) {
         this.associatedOccupants = associatedOccupants;
+    }
+
+    public int getAssignedBlockCaptId() {
+        return assignedBlockCaptId;
+    }
+
+    public void setAssignedBlockCaptId(int assignedBlockCaptId) {
+        this.assignedBlockCaptId = assignedBlockCaptId;
     }
 }
