@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -88,8 +89,14 @@ public class BlockCaptainController {
     public HashMap<String, ArrayList<String>> getBcByNeighborhood(@RequestParam("id")int id) {
         HashMap<String, ArrayList<String>> bcAndAddressesMap = new HashMap<>();
         Iterable<GeographicEntity> listOne = neighborhoodRepo.findByPathArrayNeighborhoodElement(id);
+        GeographicEntity neighborhoodName = neighborhoodRepo.findFirstByGeoId(id);
+        String[] neighborhood = {neighborhoodName.getEntity()};
+
+
+        bcAndAddressesMap.put("Neighborhood", new ArrayList<String>(Arrays.asList(neighborhood)));
 
         for (GeographicEntity eachEntity : listOne){
+
 
             String residenceAddress = eachEntity.getEntity();
             String bcName = eachEntity.getAssignedBc().getFirstName() + " " + eachEntity.getAssignedBc().getLastName();
